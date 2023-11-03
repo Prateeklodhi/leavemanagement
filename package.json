@@ -1,0 +1,60 @@
+{
+  "name": "leave-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js",
+    "build": "pnpm run clear && babel src -d build",
+    "start": "node build/server.js",
+    "debug": "node --watch babel-node --inspect src/server.js",
+    "clear": "rm -rf build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format-check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,mjs,cjs,css,scss,sass,md,html,json}\"",
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,mjs,cjs,css,scss,sass,md,html,json}\"",
+    "lint-staged": "npx lint-staged --concurrent false",
+    "pretty-quick": "npx pretty-quick --staged",
+    "prepare": "rm -rf .husky && husky install && husky add .husky/pre-commit \"pnpm run lint-staged\" && husky add .husky/post-merge \"pnpm install\""
+  },
+  "lint-staged": {
+    "**/*.{js,ts}": [
+      "npm run format",
+      "npm run lint:fix",
+      "npm run lint"
+    ]
+  },  "author": "prateek",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "core-js": "^3.33.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "hpp": "^0.2.3",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "nodemon": "^3.0.1",
+    "regenerator-runtime": "^0.14.0",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.2",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.23.2",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "errorhandler": "^1.5.1",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-sonarjs": "^0.22.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.0.3"
+  }
+}
